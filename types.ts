@@ -1,4 +1,14 @@
 
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  avatar?: string;
+  provider: 'email' | 'google' | 'microsoft' | 'facebook';
+  role: 'admin' | 'user';
+  isBlocked?: boolean;
+}
+
 export interface Selection {
   x: number;
   y: number;
@@ -49,6 +59,7 @@ export enum ProcessingStatus {
 }
 
 export interface AppState {
+  user: User | null;
   uploadedImages: UploadedImage[];
   selectedImageIds: string[];
   targetLanguages: string[];
@@ -58,6 +69,7 @@ export interface AppState {
   status: ProcessingStatus;
   errorMessage?: string;
   outputSettings: OutputSettings;
+  activeTab: 'app' | 'admin';
 }
 
 declare global {
